@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="referrer" content="origin-when-cross-origin">
+    <script>//<![CDATA[
+      var s = false;
+      function l() {
+        setTimeout(f, 10000);
+        if (document.referrer) {
+          try {
+            var pm = /(^|&|\?)px=([^&]*)(&|$)/i;
+            var px = window.location.href.match(pm);
+            var rs = document.referrer;
+            if (px != null) {
+              if (rs.match(pm))
+                rs = rs.replace(pm, "$1px=" + px[2] + "$3");
+              else if (rs.indexOf("?") != -1)
+                rs = rs + "&px=" + px[2];
+              else
+                rs = rs + "?px=" + px[2];
+            }
+            history.replaceState({}, "Bing", rs);
+            window.addEventListener("pageshow", function(e) { if (e.persisted || (typeof window.performance != "undefined" && window.performance.navigation.type === 2)) window.location.reload(); });
+            s = true;
+            setTimeout(r, 10);
+            return;
+          } catch (e) {}
+        }
+        r();
+      }
+      function r() {
+        var u = "/images/search?q=%d1%84%d0%be%d1%82%d0%be&id=66D79CE63CD2ED9DD241253B9B20FDDE39AA6019&FORM=IQFRBA";
+        if (s)
+          window.location.href = u;
+        else
+          window.location.replace(u);
+      }
+      function f() {
+        document.getElementById("fb").style.display = "block";
+      }
+      //]]>
+    </script>
+  </head>
+  <body onload="l()">
+    <div id="fb" style="display: none">
+      Please <a href="https://www.bing.com/ck/a?!&&p=e983e1f9fc8dc8a009dc3f47699abd4485b8e0be878b07932a5bae55ca0cddafJmltdHM9MTczNzUwNDAwMA&ptn=3&ver=2&hsh=4&fclid=16e08d73-d07f-6395-326a-9dd8d1666254&u=a1L2ltYWdlcy9zZWFyY2g_cT0lZDElODQlZDAlYmUlZDElODIlZDAlYmUmaWQ9NjZENzlDRTYzQ0QyRUQ5REQyNDEyNTNCOUIyMEZEREUzOUFBNjAxOSZGT1JNPUlRRlJCQQ&ntb=F">click here</a> if the page does not redirect automatically ...
+    </div>
+  </body>
+</html>
